@@ -1,0 +1,316 @@
+package program;
+
+import java.util.*;
+
+//Main function of class
+
+public class travelplanner1 {
+
+public static void main(String[] args) {
+
+Scanner sc = new Scanner(System.in);
+
+System.out.println("****** Welcome to Travel Planner *********");
+
+System.out.println("Register to Plan Your Trip");
+
+System.out.println("_______________________________________________________________________");
+
+methods e = new Entry();
+
+e.register();
+
+String a[]= {"ooty","kodaikanal","yercaud","chennai","kanyakumari"};
+
+int b[]= {5,10,4,8,3};
+
+int arr[]= {3000,2500,3000,2400,3200};
+
+planner p=new planner();
+
+int y=p.display(a);
+
+p.validate(y,b,a);
+
+p.plan(y,b,a,arr);
+
+}
+
+}
+
+//Here we are using interface to implement the class
+
+interface methods
+
+{
+
+void register();
+
+void validate(int y,int[] b,String[] a);
+
+void login(String username);
+
+}
+
+class Entry implements methods
+
+{
+
+int count=0,count1=0;
+
+public void register()
+
+{
+
+Scanner sc = new Scanner(System.in);
+
+System.out.println("Enter your Username");
+
+String username=sc.nextLine();
+
+String temp="";
+
+System.out.println("Here is Your password");
+
+for(int i=username.length()-1;i>=0;i--)
+
+{
+
+temp+=username.charAt(i);
+
+}
+
+System.out.println(temp);
+
+System.out.println("Kindly use this password to Login");
+
+System.out.println("______________________________________________________________");
+
+System.out.println("To continue the Login process Press y/n");
+
+char ch=sc.next().charAt(0);
+
+if(ch=='y')
+
+{
+
+login(username);
+
+}
+
+else
+
+{
+
+System.out.println("The Process will be ended");
+
+}
+
+//sc.close();
+
+}
+
+public void login(String username) {
+
+//System.out.println(username);
+
+String s="";
+
+System.out.println("Enter Your Username");
+
+Scanner sc1=new Scanner(System.in);
+
+String name=sc1.nextLine();
+
+if(username.equals(name))
+
+{
+
+System.out.println("Enter the Password");
+
+String password=sc1.nextLine();
+
+for(int i=name.length()-1;i>=0;i--)
+
+{
+
+s+=name.charAt(i);
+
+}
+
+if(s.equals(password))
+
+{
+
+System.out.println("You have logged in successfully");
+
+System.out.println("_______________________________________________________________ ");
+
+}
+
+else
+
+{
+
+System.out.println("Invalid password");
+
+System.out.println("_______________________________________________________________ ");
+
+count++;
+
+System.out.println(count);
+
+}
+
+}
+
+else
+
+{
+
+System.out.println("Invalid Username");
+
+System.out.println("_______________________________________________________________ ");
+
+count1++;
+
+System.out.println(count1);
+
+}
+
+//sc1.close();
+
+}
+
+@Override
+
+public void validate(int y,int[] b,String[] a) {
+
+System.out.println("______________________________________________________________________");
+
+y=y-1;
+
+for(int i=0;i<b.length;i++)
+
+{
+
+if(i==y)
+
+{
+
+System.out.println("Avaiable tickets for the trip "+ a[i]+" is : "+b[i]);
+
+System.out.println("_______________________________________________________________");
+
+}
+
+}
+
+}
+
+}
+
+//In this we are using Inheritance to inherit class
+
+class planner extends Entry
+
+{
+
+Scanner c=new Scanner(System.in);
+
+public int display(String[] a)
+
+{
+
+int val1;
+
+int val2;
+
+val1=this.count;
+
+val2=this.count1;
+
+System.out.println(val1);
+
+System.out.println(val2);
+
+if(count!=1||count1!=1)
+
+{
+
+System.out.println("You are ready to plan your trip");
+
+for(int i=0;i<a.length;i++)
+
+{
+
+System.out.println(" "+(i+1)+"."+a[i]+" ");
+
+}
+
+System.out.println("Select your place and press between 1 to 5");
+
+}
+
+int n=c.nextInt();
+
+return n;
+
+}
+
+public void plan(int y,int[] b,String[] a,int[] arr)
+
+{
+
+if(count==0||count1==0)
+
+{
+
+System.out.println("Enter the number of person for the trip");
+
+Scanner c1=new Scanner(System.in);
+
+int no=c1.nextInt();
+
+y=y-1;
+
+if(no < b[y])
+
+{
+
+System.out.println("Your have enough tickets to book");
+
+System.out.println("__________________________________________________________________________");
+
+for(int i=0;i<arr.length;i++)
+
+{
+
+if(arr[i]==y)
+
+{
+
+System.out.println("The amount for your trip is="+arr[i]);
+
+}
+
+}
+
+}
+
+else
+
+{
+
+System.out.println("Sorry you are not having enough tickets to book");
+
+System.out.println("__________________________________________________________________________");
+
+}
+
+}
+
+}
+
+}
+
