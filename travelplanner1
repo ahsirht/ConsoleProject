@@ -230,9 +230,9 @@ val1=this.count;
 
 val2=this.count1;
 
-System.out.println(val1);
+//System.out.println(val1);
 
-System.out.println(val2);
+//System.out.println(val2);
 
 if(count!=1||count1!=1)
 
